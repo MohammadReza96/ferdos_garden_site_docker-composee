@@ -1,23 +1,6 @@
 version: '3.9'
 
 
-# services:
-#     project:
-#         build: ./ferdos_garden # to create an image from a dockerfile in a special path
-#         ports:
-#             - 8000:8001
-#     db:
-#         container_name: postgreSQL
-#         image: postgres:alpine # to create an image from dockerhub by polling that image
-#         restart: always
-#         ports:
-#             - '5432:5432'
-#         environment:
-#             - POSTGRES_DB = postgres
-#             - POSTGRES_USER = postgres
-#             - POSTGRES_PASSWORD = postgres
-
-
 services:
   db:
     container_name: ferdos_garden_django_1
