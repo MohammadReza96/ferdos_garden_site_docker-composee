@@ -1,0 +1,15 @@
+
+{% if user.is_authenticated %}
+      <div class="col-sm-12 col-md-12 position-absolute" style="right:320px;top:150px;width:450px;">
+      {% comment %} <div class='col-5 d-flex flex-wrap justify-contact-around '> {% endcomment %}
+      <a class="btn btn-outline-light mr-1 col-7  text-center bt-style" href="">کاربر<span class="text-danger">{{user.first_name}}</span> خوش آمدید<span class="sr-only">(current)</span></a>
+      <a class="btn btn-outline-light col-2 text-center bt-style" href=" {% url 'account:logout' %} ">خروج<span class="sr-only">(current)</span></a>
+    {% comment %} </div> {% endcomment %}
+      </div>
+{% else %}
+      {% comment %} <div class='col-7 d-flex flex-wrap justify-contact-around'> {% endcomment %}
+      <div class="col-sm-12 col-md-12 position-absolute" style="right:320px;top:150px;width:450px;">
+      <a class="btn btn-outline-light mr-1 col-4  text-center bt-style" href="{% url 'account:login' %}">ورود<span class="sr-only">(current)</span></a>
+      <a class="btn btn-outline-light col-4  text-center bt-style" href="{% url 'account:sign_up' %}">ثبت نام<span class="sr-only">(current)</span></a>
+      {% comment %} </div> {% endcomment %}
+{% endif %}

@@ -1,0 +1,46 @@
+version: '3.9'
+
+
+# services:
+#     project:
+#         build: ./ferdos_garden # to create an image from a dockerfile in a special path
+#         ports:
+#             - 8000:8001
+#     db:
+#         container_name: postgreSQL
+#         image: postgres:alpine # to create an image from dockerhub by polling that image
+#         restart: always
+#         ports:
+#             - '5432:5432'
+#         environment:
+#             - POSTGRES_DB = postgres
+#             - POSTGRES_USER = postgres
+#             - POSTGRES_PASSWORD = postgres
+
+
+services:
+  db:
+    container_name: ferdos_garden_django_1
+    image: postgres          # to create an image from dockerhub by polling that image
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    container_name: ferdos_garden_django_1_postgres
+    build: ./ferdos_garden   # to create an image from a dockerfile in a special path
+    # command: ./wait-for db:5432 && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./ferdos_garden:/app
+    ports:
+      - 8000:8000
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db
+        
